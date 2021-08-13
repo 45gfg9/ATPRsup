@@ -2,9 +2,9 @@ name: Rust
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, actions-setup ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, actions-setup ]
 
 env:
   NAME: atprsup
