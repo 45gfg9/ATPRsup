@@ -2,7 +2,7 @@ name: ATPRsup
 
 on:
   push:
-    branches: [ main, actions-setup ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
