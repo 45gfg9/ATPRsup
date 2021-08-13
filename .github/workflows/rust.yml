@@ -32,6 +32,7 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: Upload artifacts
+      uses: actions/upload-artifact@v2
       with:
         name: ${{ env.NAME }}-${{ runner.os }}-${{ github.run_number }}
         path: target/release/${{ env.NAME }}
