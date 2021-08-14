@@ -36,11 +36,10 @@ jobs:
     - name: 'Windows: Install dependencies'
       if: ${{ runner.os == 'Windows' }}
       run: |
-        wget https://github.com/libusb/libusb/releases/download/v1.0.24/libusb-1.0.24.7z
         mkdir libusb
-        mv libusb-1.0.24.7z libusb
         cd libusb
-        7z x libusb-1.0.24.7z
+        (New-Object System.Net.WebClient).DownloadFile("https://github.com/libusb/libusb/releases/download/v1.0.24/libusb-1.0.24.7z", libusb.7z)
+        7z x libusb.7z
 
     - name: Build
       run: cargo build --verbose --release
