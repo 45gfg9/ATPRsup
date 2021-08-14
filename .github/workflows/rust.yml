@@ -37,8 +37,8 @@ jobs:
       if: ${{ runner.os == 'Windows' }}
       run: |
         mkdir libusb
+        (New-Object System.Net.WebClient).DownloadFile("https://github.com/libusb/libusb/releases/download/v1.0.24/libusb-1.0.24.7z", "libusb/libusb.7z")
         cd libusb
-        (New-Object System.Net.WebClient).DownloadFile("https://github.com/libusb/libusb/releases/download/v1.0.24/libusb-1.0.24.7z", "libusb.7z")
         7z x libusb.7z
 
     - name: Build
