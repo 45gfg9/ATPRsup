@@ -36,6 +36,7 @@ jobs:
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
     - uses: crazy-max/ghaction-chocolatey@v1
+      if: ${{ runner.os == 'Windows' }}
       with:
         args: install pkg-config
 
