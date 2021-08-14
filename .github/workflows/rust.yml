@@ -54,15 +54,15 @@ jobs:
 
     - name: Build
       uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --release --verbose
+      with:
+        command: build
+        args: --release --verbose
 
     - name: Test
       uses: actions-rs/cargo@v1
-        with:
-          command: test
-          args: --verbose
+      with:
+        command: test
+        args: --verbose
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
