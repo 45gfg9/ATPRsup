@@ -53,7 +53,7 @@ jobs:
     - name: Build
       uses: actions-rs/cargo@v1
       env:
-        PKG_CONFIG_LIBDIR: $LIBUSB_DIR
+        PKG_CONFIG_LIBDIR: ${{ env.LIBUSB_DIR }}
       with:
         command: build
         args: --release --verbose
