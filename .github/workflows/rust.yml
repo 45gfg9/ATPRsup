@@ -28,11 +28,12 @@ jobs:
           ./target
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
     - name: 'Windows: Install dependencies'
+      if: ${{ runner.os == 'Windows' }}
       uses: crazy-max/ghaction-chocolatey@v1
       with:
         args: install zadig
     - name: 'Linux: Install dependencies'
-      if: ${{ matrix.os == 'ubuntu-latest' }}
+      if: ${{ runner.os == 'Linux' }}
       run: sudo apt install libusb-1.0-0-dev
     - name: Build
       run: cargo build --verbose --release
