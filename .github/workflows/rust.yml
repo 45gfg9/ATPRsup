@@ -1,4 +1,4 @@
-name: Rust
+name: ATPRsup
 
 on:
   push:
@@ -12,14 +12,15 @@ env:
 
 jobs:
   build:
-    name: ${{ matrix.os }}
+    name: ${{ runner.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
     - uses: actions/checkout@v2
+
     - uses: actions/cache@v2
       with:
         path: |
@@ -27,18 +28,26 @@ jobs:
           ~/.cargo/git
           ./target
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-    - name: 'Windows: Install dependencies'
-      if: ${{ runner.os == 'Windows' }}
-      uses: crazy-max/ghaction-chocolatey@v1
-      with:
-        args: install zadig
+
     - name: 'Linux: Install dependencies'
       if: ${{ runner.os == 'Linux' }}
-      run: sudo apt install libusb-1.0-0-dev
+      run: sudo apt install pkg-config libusb-dev libusb-1.0
+
+    - name: 'Windows: Install dependencies'
+      if: ${{ runner.os == 'Windows' }}
+      run: |
+        wget https://github.com/libusb/libusb/releases/download/v1.0.24/libusb-1.0.24.7z
+        mkdir libusb
+        mv libusb-1.0.24.7z libusb
+        cd libusb
+        7z x libusb-1.0.24.7z
+
     - name: Build
       run: cargo build --verbose --release
+
     - name: Run tests
       run: cargo test --verbose
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
