@@ -34,6 +34,10 @@ jobs:
           ./target
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
+    - uses: crazy-max/ghaction-chocolatey@v1
+      with:
+        args: install pkg-config
+
     - name: 'Linux: Install dependencies'
       if: ${{ runner.os == 'Linux' }}
       run: sudo apt-get install pkg-config libusb-dev libusb-1.0
