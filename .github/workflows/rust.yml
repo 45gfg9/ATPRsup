@@ -23,8 +23,8 @@ jobs:
 
     - name: Rust toolchain
       uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+      with:
+        toolchain: stable
 
     - name: 'Cache: Rust'
       uses: actions/cache@v2
@@ -43,7 +43,7 @@ jobs:
       run: |
         vcpkg integrate install
         vcpkg install libusb:x64-windows-static
-        echo "LIBUSB_DIR=C:/vcpkg/installed/x64-windows-static/" >> $GITHUB_ENV
+        echo "LIBUSB_DIR=C:/vcpkg/installed/x64-windows-static/" | Out-File -FilePath $Env:GITHUB_ENV -Encoding UTF-8 -Append
 
     - name: 'Cache: vcpkg'
       if: ${{ runner.os == 'Windows' }}
