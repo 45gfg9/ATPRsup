@@ -31,7 +31,7 @@ jobs:
 
     - name: 'Linux: Install dependencies'
       if: ${{ runner.os == 'Linux' }}
-      run: sudo apt install pkg-config libusb-dev libusb-1.0
+      run: sudo apt-get install pkg-config libusb-dev libusb-1.0
 
     - name: 'Windows: Install dependencies'
       if: ${{ runner.os == 'Windows' }}
