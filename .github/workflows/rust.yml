@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
 
     steps:
     - name: Checkout
@@ -35,26 +35,19 @@ jobs:
           ./target
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-    - uses: crazy-max/ghaction-chocolatey@v1
-      if: ${{ runner.os == 'Windows' }}
-      with:
-        args: install pkg-config
-
     - name: 'Linux: Install dependencies'
       if: ${{ runner.os == 'Linux' }}
-      run: sudo apt-get install pkg-config libusb-dev libusb-1.0
+      run: sudo apt-get install libusb-1.0
 
-    - name: 'Windows: Install dependencies'
-      if: ${{ runner.os == 'Windows' }}
-      run: |
-        vcpkg integrate install
-        vcpkg install libusb:x64-windows-static
-        echo "LIBUSB_DIR=C:/vcpkg/installed/x64-windows-static/" >> $GITHUB_ENV
+#     - name: 'Windows: Install dependencies'
+#       if: ${{ runner.os == 'Windows' }}
+#       run: |
+#         vcpkg integrate install
+#         vcpkg install libusb:x64-windows-static
+#         echo "LIBUSB_DIR=C:/vcpkg/installed/x64-windows-static/" >> $GITHUB_ENV
 
     - name: Build
       uses: actions-rs/cargo@v1
-      env:
-        PKG_CONFIG_LIBDIR: ${{env.PKG_CONFIG_LIBDIR}}:${{ env.LIBUSB_DIR }}
       with:
         command: build
         args: --release --verbose
