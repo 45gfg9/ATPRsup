@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ windows-latest, ubuntu-latest, macos-latest ]
 
     steps:
     - name: Checkout
@@ -34,17 +34,6 @@ jobs:
           ~/.cargo
           ./target
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
-    - name: 'Linux: Install dependencies'
-      if: ${{ runner.os == 'Linux' }}
-      run: sudo apt-get install libusb-1.0
-
-#     - name: 'Windows: Install dependencies'
-#       if: ${{ runner.os == 'Windows' }}
-#       run: |
-#         vcpkg integrate install
-#         vcpkg install libusb:x64-windows-static
-#         echo "LIBUSB_DIR=C:/vcpkg/installed/x64-windows-static/" >> $GITHUB_ENV
 
     - name: Build
       uses: actions-rs/cargo@v1
