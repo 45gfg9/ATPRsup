@@ -1,0 +1,65 @@
+name: ATPRsup
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Rust toolchain
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+
+    - name: 'Cache: Rust'
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cargo
+          ./target
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+    - name: 'Linux: Install dependencies'
+      if: ${{ runner.os == 'Linux' }}
+      run: sudo apt-get install libusb-1.0
+
+#     - name: 'Windows: Install dependencies'
+#       if: ${{ runner.os == 'Windows' }}
+#       run: |
+#         vcpkg integrate install
+#         vcpkg install libusb:x64-windows-static
+#         echo "LIBUSB_DIR=C:/vcpkg/installed/x64-windows-static/" >> $GITHUB_ENV
+
+    - name: Build
+      uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release --verbose
+
+    - name: Test
+      uses: actions-rs/cargo@v1
+      with:
+        command: test
+        args: --verbose
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ATPRsup-${{ runner.os }}-${{ github.run_number }}
+        path: target/release/atprsup
