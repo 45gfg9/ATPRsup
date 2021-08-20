@@ -27,7 +27,7 @@ pub fn lsusb() {
     for device in rusb::devices().expect("Cannot retrieve device list").iter() {
         match ls(device) {
             Ok(_) => (),
-            Err(error) => log::error!("Error: {}", error),
+            Err(error) => log::error!("Error: {:?}", error),
         };
     }
 }
