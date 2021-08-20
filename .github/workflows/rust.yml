@@ -50,7 +50,6 @@ jobs:
       with:
         command: test
         args: --verbose
-        steps:
 
     - name: Determine artifact
       uses: haya14busa/action-cond@v1
