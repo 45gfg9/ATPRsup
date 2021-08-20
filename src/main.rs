@@ -5,5 +5,5 @@ mod device;
 fn main() {
     Builder::from_default_env().target(Target::Stdout).init();
 
-    device::lsusb();
+    device::get_atpr().expect("ATPR");
 }
