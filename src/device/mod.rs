@@ -8,45 +8,47 @@ fn open_device(
 ) -> Result<DeviceHandle<GlobalContext>> {
     // reference: avrdude/usbasp.c
     let mut err = Some(Error::NotFound);
-    for device in rusb::devices().expect("Cannot retrieve device list").iter() {
-        let desc = device.device_descriptor().unwrap(); // guaranteed success
-        if desc.vendor_id() == vid && desc.product_id() == pid {
-            let device = match device.open() {
-                Ok(handle) => handle,
-                Err(e) => {
-                    err = Some(Error::Access);
-                    log::warn!("Cannot open USB device: {}", e);
-                    continue;
-                }
-            };
-            err = None;
-            match device.read_manufacturer_string_ascii(&desc) {
-                Ok(str) => {
-                    log::trace!("Seen device from vendor \"{}\"", str);
-                    if str != vendor_name {
-                        err = Some(Error::NotFound)
-                    }
-                }
-                Err(e) => {
-                    err = Some(Error::Io);
-                    log::warn!("Cannot query manufacturer for device: {}", e);
+    for (desc, device) in rusb::devices()
+        .expect("Cannot retrieve device list")
+        .iter()
+        .map(|dev| (dev.device_descriptor().unwrap(), dev))
+        .filter(|(desc, _)| desc.vendor_id() == vid && desc.product_id() == pid)
+    {
+        let device = match device.open() {
+            Ok(handle) => handle,
+            Err(e) => {
+                err = Some(Error::Access);
+                log::warn!("Cannot open USB device: {}", e);
+                continue;
+            }
+        };
+        err = None;
+        match device.read_manufacturer_string_ascii(&desc) {
+            Ok(str) => {
+                log::trace!("Found device from vendor \"{}\"", str);
+                if str != vendor_name {
+                    err = Some(Error::NotFound)
                 }
             }
-            match device.read_product_string_ascii(&desc) {
-                Ok(str) => {
-                    log::trace!("Seen product \"{}\"", str);
-                    if str != product_name {
-                        err = Some(Error::NotFound)
-                    }
-                }
-                Err(e) => {
-                    err = Some(Error::Io);
-                    log::warn!("Cannot query product for device: {}", e);
+            Err(e) => {
+                err = Some(Error::Io);
+                log::warn!("Cannot query manufacturer for device: {}", e);
+            }
+        }
+        match device.read_product_string_ascii(&desc) {
+            Ok(str) => {
+                log::trace!("Found product \"{}\"", str);
+                if str != product_name {
+                    err = Some(Error::NotFound)
                 }
             }
-            if err.is_none() {
-                return Ok(device);
+            Err(e) => {
+                err = Some(Error::Io);
+                log::warn!("Cannot query product for device: {}", e);
             }
+        }
+        if err.is_none() {
+            return Ok(device);
         }
     }
     Err(err.unwrap()) // err must be Some
