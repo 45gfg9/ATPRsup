@@ -51,15 +51,11 @@ jobs:
         command: test
         args: --verbose
 
-    - name: Determine artifact
-      uses: haya14busa/action-cond@v1
-      id: ext
-      with:
-        cond: ${{ runner.os == 'Windows' }}
-        if_true: .exe
-
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
         name: ATPRsup-${{ runner.os }}-${{ github.run_number }}
-        path: target/release/atprsup${{ steps.ext.outputs.value }}
+        path: |
+          target/release/atprsup
+          target/release/atprsup.exe
+        if-no-files-found: ignore
