@@ -5,5 +5,5 @@ mod device;
 fn main() {
     Builder::from_default_env().target(Target::Stdout).init();
 
-    device::get_atpr().expect("ATPR");
+    device::getATPR().expect("ATPR");
 }

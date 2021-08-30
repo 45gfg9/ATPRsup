@@ -54,7 +54,8 @@ fn open_device(
     Err(err.unwrap()) // err must be Some
 }
 
-pub fn get_atpr() -> Result<DeviceHandle<GlobalContext>> {
+#[allow(non_snake_case)]
+pub fn getATPR() -> Result<DeviceHandle<Context>> {
     // Shared VID & PID provided by Objective Development
     const VID: u16 = 0x16C0;
     const PID: u16 = 0x05DC;
