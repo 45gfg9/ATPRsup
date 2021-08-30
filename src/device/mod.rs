@@ -1,14 +1,16 @@
-use rusb::{DeviceHandle, Error, GlobalContext, Result};
+use rusb::{Context, DeviceHandle, Error, Result, UsbContext};
 
 fn open_device(
     vid: u16,
     vendor_name: &str,
     pid: u16,
     product_name: &str,
-) -> Result<DeviceHandle<GlobalContext>> {
+) -> Result<DeviceHandle<Context>> {
     // reference: avrdude/usbasp.c
     let mut err = Some(Error::NotFound);
-    for (desc, device) in rusb::devices()
+    for (desc, device) in Context::new()
+        .expect("Cannot create libusb context")
+        .devices()
         .expect("Cannot retrieve device list")
         .iter()
         .map(|dev| (dev.device_descriptor().unwrap(), dev))
