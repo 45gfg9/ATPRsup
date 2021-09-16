@@ -1,1 +1,2 @@
-pub mod device;
+/// Low-level communications
+pub mod ll;

@@ -1,5 +1,6 @@
 use rusb::{Context, DeviceHandle, Error, Result, UsbContext};
 
+// Open device with specified VID, PID, vendor name, product name
 fn open_device(
     vid: u16,
     vendor_name: &str,
@@ -56,6 +57,7 @@ fn open_device(
     Err(err.unwrap()) // err must be Some
 }
 
+/// Get an ATPR device handle.
 #[allow(non_snake_case)]
 pub fn getATPR() -> Result<DeviceHandle<Context>> {
     // Shared VID & PID provided by Objective Development
