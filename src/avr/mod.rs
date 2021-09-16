@@ -6,8 +6,11 @@ use strum_macros::{EnumString, EnumVariantNames};
 pub enum Interface {
     ISP,
     JTAG,
+    /// High-Voltage Serial Programming
     HVSP,
-    PP,
+    /// High-Voltage Parallel Programming
+    HVPP,
+    /// debugWire
     DW,
 }
 
@@ -16,9 +19,13 @@ pub enum Interface {
 pub enum Memory {
     Flash,
     EEPROM,
+    /// High Fuse
     HFuse,
+    /// Low Fuse
     LFuse,
+    /// Extended Fuse
     EFuse,
+    /// Lock bits
     Lock,
 }
 
