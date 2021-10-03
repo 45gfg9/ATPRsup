@@ -1,0 +1,12 @@
+name = "ATmega640"
+alias = "m640"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x96", "0x08",]
+jtagid = "0x0960803F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 8192
+flash = 65536
+eeprom = 4096

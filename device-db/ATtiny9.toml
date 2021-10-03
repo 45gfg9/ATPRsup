@@ -1,0 +1,10 @@
+name = "ATtiny9"
+alias = "t9"
+arch = "AVR8L"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x90", "0x08",]
+interfaces = [ "tpi",]
+
+[addresses]
+sram = 32
+flash = 1024

@@ -1,0 +1,9 @@
+name = "ATtiny28"
+alias = "t28"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x91", "0x07",]
+interfaces = [ "hvpp",]
+
+[addresses]
+flash = 2048

@@ -1,0 +1,11 @@
+name = "ATtiny43U"
+alias = "t43u"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x92", "0x0c",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 256
+flash = 4096
+eeprom = 64

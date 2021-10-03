@@ -1,0 +1,11 @@
+name = "ATmega32HVB"
+alias = "m32hvb"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x95", "0x10",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 2048
+flash = 32768
+eeprom = 1024

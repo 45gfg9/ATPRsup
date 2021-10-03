@@ -1,0 +1,11 @@
+name = "ATmega8"
+alias = "m8"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x93", "0x07",]
+interfaces = [ "isp", "hvpp",]
+
+[addresses]
+sram = 1024
+flash = 8192
+eeprom = 512

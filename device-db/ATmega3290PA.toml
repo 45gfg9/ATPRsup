@@ -1,0 +1,12 @@
+name = "ATmega3290PA"
+alias = "m3290pa"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x95", "0x0c",]
+jtagid = "0x0950C03F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 2048
+flash = 32768
+eeprom = 1024

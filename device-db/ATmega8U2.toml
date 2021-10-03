@@ -1,0 +1,11 @@
+name = "ATmega8U2"
+alias = "m8u2"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x93", "0x89",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 512
+flash = 8192
+eeprom = 512

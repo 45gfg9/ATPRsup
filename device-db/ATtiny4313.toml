@@ -1,0 +1,11 @@
+name = "ATtiny4313"
+alias = "t4313"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x92", "0x0d",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 256
+flash = 4096
+eeprom = 256

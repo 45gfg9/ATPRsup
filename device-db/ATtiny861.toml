@@ -1,0 +1,11 @@
+name = "ATtiny861"
+alias = "t861"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x93", "0x0d",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 512
+flash = 8192
+eeprom = 512

@@ -1,0 +1,11 @@
+name = "ATtiny48"
+alias = "t48"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x92", "0x09",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 256
+flash = 4096
+eeprom = 64

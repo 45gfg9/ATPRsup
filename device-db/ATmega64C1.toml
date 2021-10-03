@@ -1,0 +1,11 @@
+name = "ATmega64C1"
+alias = "m64c1"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x96", "0x86",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 4096
+flash = 65536
+eeprom = 2048

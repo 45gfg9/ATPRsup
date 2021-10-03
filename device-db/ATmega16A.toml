@@ -1,0 +1,12 @@
+name = "ATmega16A"
+alias = "m16a"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x94", "0x03",]
+jtagid = "0x0940303F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 1024
+flash = 16384
+eeprom = 512

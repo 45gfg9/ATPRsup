@@ -1,0 +1,12 @@
+name = "ATmega32U4"
+alias = "m32u4"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x95", "0x87",]
+jtagid = "0x0958703F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 2560
+flash = 32768
+eeprom = 1024

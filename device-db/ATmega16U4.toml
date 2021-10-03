@@ -1,0 +1,12 @@
+name = "ATmega16U4"
+alias = "m16u4"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x94", "0x88",]
+jtagid = "0x0948803F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 1280
+flash = 16384
+eeprom = 512

@@ -1,0 +1,12 @@
+name = "ATmega324A"
+alias = "m324a"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x95", "0x15",]
+jtagid = "0x0951103F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 2048
+flash = 32768
+eeprom = 1024

@@ -1,0 +1,12 @@
+name = "ATmega128RFA1"
+alias = "m128rfa1"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0xa7", "0x01",]
+jtagid = "0x0A70103F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 16384
+flash = 131072
+eeprom = 4096

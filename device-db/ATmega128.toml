@@ -1,0 +1,12 @@
+name = "ATmega128"
+alias = "m128"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x97", "0x02",]
+jtagid = "0x0970203F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 4096
+flash = 131072
+eeprom = 4096

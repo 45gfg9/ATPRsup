@@ -1,0 +1,11 @@
+name = "ATmega32U2"
+alias = "m32u2"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x95", "0x8a",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 1024
+flash = 32768
+eeprom = 1024

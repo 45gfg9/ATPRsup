@@ -1,0 +1,11 @@
+name = "ATmega16M1"
+alias = "m16m1"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x94", "0x84",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 1024
+flash = 16384
+eeprom = 512

@@ -1,0 +1,11 @@
+name = "ATtiny2313"
+alias = "t2313"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x91", "0x0a",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 128
+flash = 2048
+eeprom = 128

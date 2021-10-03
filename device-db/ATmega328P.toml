@@ -1,0 +1,11 @@
+name = "ATmega328P"
+alias = "m328p"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x95", "0x0f",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 2048
+flash = 32768
+eeprom = 1024

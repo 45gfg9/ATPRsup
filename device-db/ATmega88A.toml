@@ -1,0 +1,11 @@
+name = "ATmega88A"
+alias = "m88a"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x93", "0x0a",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 1024
+flash = 8192
+eeprom = 512

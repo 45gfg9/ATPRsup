@@ -1,0 +1,11 @@
+name = "ATtiny13A"
+alias = "t13a"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x90", "0x07",]
+interfaces = [ "isp", "hvsp", "dw",]
+
+[addresses]
+sram = 64
+flash = 1024
+eeprom = 64

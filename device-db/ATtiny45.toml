@@ -1,0 +1,11 @@
+name = "ATtiny45"
+alias = "t45"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x92", "0x06",]
+interfaces = [ "isp", "hvsp", "dw",]
+
+[addresses]
+sram = 256
+flash = 4096
+eeprom = 256

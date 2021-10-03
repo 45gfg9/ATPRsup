@@ -1,0 +1,12 @@
+name = "ATmega644A"
+alias = "m644a"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x96", "0x09",]
+jtagid = "0x0960A03f"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 4096
+flash = 65536
+eeprom = 2048

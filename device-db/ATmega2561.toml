@@ -1,0 +1,12 @@
+name = "ATmega2561"
+alias = "m2561"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x98", "0x02",]
+jtagid = "0x0980203F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 8192
+flash = 262144
+eeprom = 4096

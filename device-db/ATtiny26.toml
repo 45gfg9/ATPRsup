@@ -1,0 +1,11 @@
+name = "ATtiny26"
+alias = "t26"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x91", "0x09",]
+interfaces = [ "isp", "hvpp",]
+
+[addresses]
+sram = 128
+flash = 2048
+eeprom = 128

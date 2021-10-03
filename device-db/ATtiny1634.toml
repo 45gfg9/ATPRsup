@@ -1,0 +1,11 @@
+name = "ATtiny1634"
+alias = "t1634"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x94", "0x12",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 1024
+flash = 16384
+eeprom = 256

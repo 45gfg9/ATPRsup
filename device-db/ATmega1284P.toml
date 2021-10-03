@@ -1,0 +1,12 @@
+name = "ATmega1284P"
+alias = "m1284p"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x97", "0x05",]
+jtagid = "0x0970503F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 16384
+flash = 131072
+eeprom = 4096

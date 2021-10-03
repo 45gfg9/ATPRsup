@@ -1,0 +1,11 @@
+name = "ATmega48A"
+alias = "m48a"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x92", "0x05",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 512
+flash = 4096
+eeprom = 256

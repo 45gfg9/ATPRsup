@@ -1,0 +1,12 @@
+name = "ATmega329"
+alias = "m329"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x95", "0x03",]
+jtagid = "0x0950303F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 2048
+flash = 32768
+eeprom = 1024

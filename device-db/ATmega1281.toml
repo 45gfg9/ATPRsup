@@ -1,0 +1,12 @@
+name = "ATmega1281"
+alias = "m1281"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x97", "0x04",]
+jtagid = "0x0970403F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 8192
+flash = 131072
+eeprom = 4096

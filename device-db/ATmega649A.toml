@@ -1,0 +1,12 @@
+name = "ATmega649A"
+alias = "m649a"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x96", "0x03",]
+jtagid = "0x0960B03F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 4096
+flash = 65536
+eeprom = 2048

@@ -1,0 +1,11 @@
+name = "ATtiny461A"
+alias = "t461a"
+arch = "AVR8"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x92", "0x08",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 256
+flash = 4096
+eeprom = 256

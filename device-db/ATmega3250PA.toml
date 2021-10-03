@@ -1,0 +1,12 @@
+name = "ATmega3250PA"
+alias = "m3250pa"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x95", "0x0e",]
+jtagid = "0x0950E03F"
+interfaces = [ "isp", "hvpp", "jtag",]
+
+[addresses]
+sram = 2048
+flash = 32768
+eeprom = 1024

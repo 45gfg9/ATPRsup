@@ -1,0 +1,11 @@
+name = "ATmega16U2"
+alias = "m16u2"
+arch = "AVR8"
+family = "megaAVR"
+signatures = [ "0x1e", "0x94", "0x89",]
+interfaces = [ "isp", "hvpp", "dw",]
+
+[addresses]
+sram = 512
+flash = 16384
+eeprom = 512

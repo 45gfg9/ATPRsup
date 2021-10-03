@@ -1,0 +1,10 @@
+name = "ATtiny20"
+alias = "t20"
+arch = "AVR8L"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x91", "0x0f",]
+interfaces = [ "tpi",]
+
+[addresses]
+sram = 128
+flash = 2048

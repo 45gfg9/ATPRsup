@@ -1,0 +1,10 @@
+name = "ATtiny4"
+alias = "t4"
+arch = "AVR8L"
+family = "tinyAVR"
+signatures = [ "0x1e", "0x8f", "0x0a",]
+interfaces = [ "tpi",]
+
+[addresses]
+sram = 32
+flash = 512
