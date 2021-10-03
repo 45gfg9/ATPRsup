@@ -1,7 +1,8 @@
+use serde::{Deserialize, Serialize};
 use structopt::StructOpt;
-use strum_macros::{EnumString, EnumVariantNames};
+use strum::{EnumString, EnumVariantNames};
 
-#[derive(EnumString, EnumVariantNames, StructOpt, Debug)]
+#[derive(EnumString, EnumVariantNames, StructOpt, Serialize, Deserialize, Debug)]
 #[strum(ascii_case_insensitive)]
 pub enum Interface {
     ISP,
@@ -12,9 +13,11 @@ pub enum Interface {
     HVPP,
     /// debugWire
     DW,
+    /// ATxmega PDI
+    PDI,
 }
 
-#[derive(EnumString, EnumVariantNames, StructOpt, Debug)]
+#[derive(EnumString, EnumVariantNames, StructOpt, Serialize, Deserialize, Debug)]
 #[strum(ascii_case_insensitive)]
 pub enum Memory {
     Flash,
@@ -29,10 +32,11 @@ pub enum Memory {
     Lock,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
 pub struct AVR {
-    part_name: String,
+    pub part_name: String,
 
-    interfaces: Vec<Interface>,
+    pub interfaces: Vec<Interface>,
 
-    memories: Vec<Memory>,
+    pub memories: Vec<Memory>,
 }

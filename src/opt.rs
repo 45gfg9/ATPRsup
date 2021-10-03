@@ -8,23 +8,23 @@ use crate::avr::{Interface, Memory};
 pub struct Opt {
     /// Part name
     #[structopt(short, long)]
-    part: Option<String>,
+    pub part: Option<String>,
 
     /// Interface
     #[structopt(
         possible_values = Interface::VARIANTS,
         case_insensitive = true
     )]
-    interface: Interface,
+    pub interface: Interface,
 
     /// Memory
     #[structopt(
         possible_values = Memory::VARIANTS,
         case_insensitive = true
     )]
-    memory: Memory,
+    pub memory: Memory,
 
     /// Verbosity (-v, -vv, -vvv, etc.)
     #[structopt(short, long, parse(from_occurrences))]
-    verbose: u8,
+    pub verbose: u8,
 }

@@ -12,5 +12,5 @@ fn main() {
     let opt = Opt::from_args();
     println!("{:#?}", opt);
 
-    ll::getATPR().expect("ATPR");
+    ll::getATPR().expect("ATPR not found");
 }
