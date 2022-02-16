@@ -7,7 +7,7 @@ use crate::avr::{Interface, Memory};
 use super::ATPRContext;
 
 impl Memory {
-    fn as_mask(self) -> u8 {
+    fn as_mask(&self) -> u8 {
         match self {
             Memory::Flash => 0x0,
             Memory::EEPROM => 0x1,
@@ -20,7 +20,7 @@ impl Memory {
 }
 
 impl Interface {
-    fn as_mask(self) -> u8 {
+    fn as_mask(&self) -> u8 {
         match self {
             Interface::ISP => 0x00,
             Interface::JTAG => 0x10,
