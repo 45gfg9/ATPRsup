@@ -3,6 +3,7 @@ use strum::VariantNames;
 
 use crate::avr::{Interface, Memory};
 
+// TODO: check firmware version on -V
 #[derive(Debug, StructOpt)]
 #[structopt(name = "atprsup")]
 pub struct Opt {
