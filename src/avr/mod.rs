@@ -1,9 +1,13 @@
 use serde::{Deserialize, Serialize};
-use structopt::StructOpt;
-use strum::{EnumString, EnumVariantNames};
 
-#[derive(EnumString, EnumVariantNames, StructOpt, Serialize, Deserialize, Debug)]
-#[strum(ascii_case_insensitive)]
+pub trait Program {
+    fn connect();
+    fn disconnect();
+
+    fn begin();
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 pub enum Interface {
     ISP,
     JTAG,
@@ -17,8 +21,7 @@ pub enum Interface {
     PDI,
 }
 
-#[derive(EnumString, EnumVariantNames, StructOpt, Serialize, Deserialize, Debug)]
-#[strum(ascii_case_insensitive)]
+#[derive(Serialize, Deserialize, Debug)]
 pub enum Memory {
     Flash,
     EEPROM,

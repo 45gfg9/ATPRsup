@@ -2,8 +2,10 @@
 name = "atprsup"
 version = "0.1.0"
 authors = ["45gfg9 <mc45@qq.com>"]
-edition = "2018"
+edition = "2021"
 license = "GPL-3.0-or-later"
+description = "Software for ATPR programmer"
+repository = "https://github.com/45gfg9/ATPRsup"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -11,7 +13,8 @@ license = "GPL-3.0-or-later"
 log = "0.4"
 env_logger = "0.9"
 rusb = "0.8"
-structopt = "0.3"
-strum = { version = "0.21", features = ["derive"] }
+clap = "3.0"
+clap_complete = "3.0"
+indicatif = "0.16.2"
 serde = { version = "1.0", features = ["derive"] }
 toml = "0.5"
