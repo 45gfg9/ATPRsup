@@ -9,7 +9,6 @@ use structopt::StructOpt;
 mod avr;
 mod ll;
 mod opt;
-mod prog;
 
 fn main() {
     Builder::from_default_env().target(Target::Stdout).init();
