@@ -1,4 +1,4 @@
-use std::time::Duration;
+use std::time::{Duration, SystemTime};
 
 use rusb::{request_type, DeviceHandle, Result};
 
@@ -39,6 +39,10 @@ pub struct ATPR {
 impl ATPR {
     const TIMEOUT: Duration = Duration::from_secs(2);
 
+    // Type = Vendor, Recipient = Device
+    const REQ_TYPE_CONTROL_IN: u8 = 192;
+    const REQ_TYPE_CONTROL_OUT: u8 = 64;
+
     pub fn new(handle: DeviceHandle<ATPRContext>) -> Self {
         Self { handle }
     }
@@ -57,7 +61,7 @@ impl ATPR {
     }
 
     pub fn write(&self, mem: Memory, interface: Interface, data: &[u8]) -> Result<usize> {
-        let packed = ATPR::pack(mem, interface);
+        let packed = Self::pack(mem, interface);
         self.handle.write_control(
             request_type(
                 rusb::Direction::Out,
@@ -68,7 +72,29 @@ impl ATPR {
             packed.1,
             packed.2,
             data,
-            ATPR::TIMEOUT,
+            Self::TIMEOUT,
         )
+    }
+
+    pub fn version(&self) -> Result<(u8, u8, u8)> {
+        let stamp: u8 = SystemTime::now()
+            .duration_since(SystemTime::UNIX_EPOCH)
+            .unwrap()
+            .subsec_millis() as _;
+
+        let mut buf: [u8; 4] = [0; 4];
+        self.handle
+            .read_control(
+                Self::REQ_TYPE_CONTROL_IN,
+                0xFF,
+                stamp as _,
+                0,
+                &mut buf,
+                Self::TIMEOUT,
+            )
+            .map(|bytes| {
+                assert_eq!((4, stamp), (bytes, buf[0]), "Wrong response from firmware");
+                (buf[1], buf[2], buf[3])
+            })
     }
 }
