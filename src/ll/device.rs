@@ -66,5 +66,5 @@ pub fn getATPR() -> Result<ATPR> {
     const VENDOR: &str = "45gfg9.net";
     const PRODUCT: &str = "ATPR";
 
-    open_device(VID, VENDOR, PID, PRODUCT).map(|h| h.into())
+    open_device(VID, VENDOR, PID, PRODUCT).map(ATPR::new)
 }

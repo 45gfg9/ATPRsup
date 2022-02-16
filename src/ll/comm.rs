@@ -36,14 +36,12 @@ pub struct ATPR {
     handle: DeviceHandle<ATPRContext>,
 }
 
-impl Into<ATPR> for DeviceHandle<ATPRContext> {
-    fn into(self) -> ATPR {
-        ATPR { handle: self }
-    }
-}
-
 impl ATPR {
     const TIMEOUT: Duration = Duration::from_secs(2);
+
+    pub fn new(handle: DeviceHandle<ATPRContext>) -> Self {
+        Self { handle }
+    }
 
     fn pack(mem: Memory, int: Interface) -> (u8, u16, u16) {
         let request: u8 = mem.as_mask() | int.as_mask();
