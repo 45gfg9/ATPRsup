@@ -40,8 +40,8 @@ impl ATPR {
     const TIMEOUT: Duration = Duration::from_secs(2);
 
     // Type = Vendor, Recipient = Device
-    const REQ_TYPE_CONTROL_IN: u8 = 192;
-    const REQ_TYPE_CONTROL_OUT: u8 = 64;
+    const REQ_TYPE_CTRL_IN: u8 = 192;
+    const REQ_TYPE_CTRL_OUT: u8 = 64;
 
     pub fn new(handle: DeviceHandle<ATPRContext>) -> Self {
         Self { handle }
@@ -85,7 +85,7 @@ impl ATPR {
         let mut buf: [u8; 4] = [0; 4];
         self.handle
             .read_control(
-                Self::REQ_TYPE_CONTROL_IN,
+                Self::REQ_TYPE_CTRL_IN,
                 0xFF,
                 stamp as _,
                 0,
