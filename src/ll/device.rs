@@ -1,6 +1,8 @@
-use rusb::{DeviceHandle, Error, GlobalContext, Result};
+use rusb::{DeviceHandle, Error, Result};
 
 use crate::ll::ATPR;
+
+use super::ATPRContext;
 
 /// Open device with specified VID, PID, vendor name, product name
 fn open_device(
@@ -8,7 +10,7 @@ fn open_device(
     vendor_name: &str,
     pid: u16,
     product_name: &str,
-) -> Result<DeviceHandle<GlobalContext>> {
+) -> Result<DeviceHandle<ATPRContext>> {
     // reference: avrdude/usbasp.c
     let mut err = Some(Error::NotFound);
     for (desc, device) in rusb::devices()
