@@ -22,11 +22,55 @@ impl ATPR {
         Self { handle }
     }
 
-    pub fn get_libusb_handle(&self) -> &DeviceHandle<ATPRContext> {
-        &self.handle
+    // libusb wrapper
+    pub fn read(&self, request: u8, value: u16, index: u16, buf: &mut [u8]) -> Result<usize> {
+        log::trace!(
+            "Control In : Request {:#04x}, Value {:#06x}, Index {:#06x}",
+            request,
+            value,
+            index
+        );
+        log::trace!("==>  {:?}", buf);
+        let result = self.handle.read_control(
+            Self::REQ_TYPE_CTRL_IN,
+            request,
+            value,
+            index,
+            buf,
+            Self::TIMEOUT,
+        );
+        match result {
+            Ok(bytes) => log::trace!("{:#5} bytes <== {:?}", bytes, &buf[..bytes - 1]),
+            Err(e) => log::trace!("USB Error {}", e),
+        }
+        result
+    }
+
+    pub fn write(&self, request: u8, value: u16, index: u16, buf: &[u8]) -> Result<usize> {
+        log::trace!(
+            "Control Out: Request {:#04x}, Value {:#06x}, Index {:#06x}",
+            request,
+            value,
+            index,
+        );
+        log::trace!("==>  {:?}", buf);
+        let result = self.handle.write_control(
+            Self::REQ_TYPE_CTRL_OUT,
+            request,
+            value,
+            index,
+            buf,
+            Self::TIMEOUT,
+        );
+        match result {
+            Ok(bytes) => log::trace!("{:#5} bytes <== {:?}", bytes, &buf[..bytes - 1]),
+            Err(e) => log::trace!("USB Error {}", e),
+        }
+        result
     }
 
     pub fn version(&self) -> Result<Version> {
+        // "randomly" generated stamp. Should be echoed back
         let stamp: u8 = SystemTime::now()
             .duration_since(SystemTime::UNIX_EPOCH)
             .unwrap()
