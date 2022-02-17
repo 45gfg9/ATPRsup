@@ -3,6 +3,7 @@ use std::rc::Rc;
 use rusb::Result;
 use serde::{Deserialize, Serialize};
 
+mod isp;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub enum Interface {
