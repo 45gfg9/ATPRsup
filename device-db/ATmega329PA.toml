@@ -5,6 +5,7 @@ family = "megaAVR"
 signatures = [ "0x1e", "0x95", "0x0b",]
 jtagid = "0x0950B03F"
 interfaces = [ "isp", "hvpp", "jtag",]
+pagesize = 128
 
 [addresses]
 sram = 2048

@@ -4,6 +4,7 @@ arch = "AVR8"
 family = "tinyAVR"
 signatures = [ "0x1e", "0x92", "0x06",]
 interfaces = [ "isp", "hvsp", "dw",]
+pagesize = 64
 
 [addresses]
 sram = 256

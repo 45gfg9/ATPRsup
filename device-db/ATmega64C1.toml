@@ -4,6 +4,7 @@ arch = "AVR8"
 family = "megaAVR"
 signatures = [ "0x1e", "0x96", "0x86",]
 interfaces = [ "isp", "hvpp", "dw",]
+pagesize = 256
 
 [addresses]
 sram = 4096
