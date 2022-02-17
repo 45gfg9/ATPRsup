@@ -28,7 +28,7 @@ fn open_device(
         err = None;
         match device.read_manufacturer_string_ascii(&desc) {
             Ok(str) => {
-                log::trace!("Found device from vendor \"{}\"", str);
+                log::debug!("Found device from vendor \"{}\"", str);
                 if str != vendor_name {
                     err = Some(Error::NotFound)
                 }
@@ -40,7 +40,7 @@ fn open_device(
         }
         match device.read_product_string_ascii(&desc) {
             Ok(str) => {
-                log::trace!("Found product \"{}\"", str);
+                log::debug!("Found product \"{}\"", str);
                 if str != product_name {
                     err = Some(Error::NotFound)
                 }

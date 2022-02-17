@@ -11,9 +11,9 @@ repository = "https://github.com/45gfg9/ATPRsup"
 
 [dependencies]
 log = "0.4"
-env_logger = "0.9"
+simple_logger = "2.1.0"
 rusb = "0.8"
-clap = "3.0"
+clap = { version = "3.0", features = ["cargo"] }
 clap_complete = "3.0"
 indicatif = "0.16.2"
 serde = { version = "1.0", features = ["derive"] }

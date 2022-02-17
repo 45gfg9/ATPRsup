@@ -5,9 +5,10 @@ mod ll;
 mod opt;
 
 fn main() {
-    env_logger::init();
-    // let opt = Opt::from_args();
-    // println!("{:#?}", opt);
+    simple_logger::SimpleLogger::new()
+        .with_level(log::LevelFilter::Trace)
+        .init()
+        .unwrap();
 
     let atpr: ATPR = ll::getATPR().expect("ATPR not found");
     let ver = atpr.version();
