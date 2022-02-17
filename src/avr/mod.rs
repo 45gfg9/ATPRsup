@@ -1,11 +1,5 @@
 use serde::{Deserialize, Serialize};
 
-pub trait Program {
-    fn connect();
-    fn disconnect();
-
-    fn begin();
-}
 
 #[derive(Serialize, Deserialize, Debug)]
 pub enum Interface {
