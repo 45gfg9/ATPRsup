@@ -1,3 +1,4 @@
+use rusb::Result;
 use serde::{Deserialize, Serialize};
 
 
@@ -30,22 +31,22 @@ pub enum Memory {
 }
 
 pub trait Program {
-    fn connect(&self);
-    fn begin(&self) -> bool;
-    fn close(self);
+    fn connect(&self) -> Result<()>;
+    fn begin(&self) -> Result<bool>;
+    fn close(self) -> Result<()>;
 
-    fn chip_erase(&self) -> bool;
-    fn is_ready(&self) -> bool;
-    fn latch_data(&self) -> bool;
+    fn chip_erase(&self) -> Result<bool>;
+    fn is_ready(&self) -> Result<bool>;
+    fn latch_data(&self) -> Result<bool>;
 
-    fn read_flash(&self, address: usize) -> u8;
-    fn write_flash(&self, address: usize, data: u8) -> bool;
+    fn read_flash(&self, address: usize) -> Result<u8>;
+    fn write_flash(&self, address: usize, data: u8) -> Result<bool>;
 
     fn load_flash_page(&self, address: usize, data: &[u8]);
-    fn flush_flash_page(&self) -> bool;
+    fn flush_flash_page(&self) -> Result<bool>;
 
-    fn read_eeprom(&self, address: usize) -> u8;
-    fn write_eeprom(&self, address: usize, data: u8) -> bool;
+    fn read_eeprom(&self, address: usize) -> Result<u8>;
+    fn write_eeprom(&self, address: usize, data: u8) -> Result<bool>;
 }
 
 #[derive(Serialize, Deserialize, Debug)]
