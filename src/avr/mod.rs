@@ -35,11 +35,26 @@ pub enum Memory {
     Lock,
 }
 
+pub trait Program {
+    fn connect(&self);
+    fn begin(&self) -> bool;
+    fn close(self);
+
+    fn chip_erase(&self) -> bool;
+    fn is_ready(&self) -> bool;
+    fn latch_data(&self) -> bool;
+
+    fn read_flash(&self, address: usize) -> u8;
+    fn write_flash(&self, address: usize, data: u8) -> bool;
+
+    fn load_flash_page(&self, address: usize, data: &[u8]);
+    fn flush_flash_page(&self) -> bool;
+
+    fn read_eeprom(&self, address: usize) -> u8;
+    fn write_eeprom(&self, address: usize, data: u8) -> bool;
+}
+
 #[derive(Serialize, Deserialize, Debug)]
 pub struct AVR {
     pub part_name: String,
-
-    pub interfaces: Vec<Interface>,
-
-    pub memories: Vec<Memory>,
 }
