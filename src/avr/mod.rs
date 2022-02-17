@@ -1,3 +1,5 @@
+use std::rc::Rc;
+
 use rusb::Result;
 use serde::{Deserialize, Serialize};
 
@@ -31,9 +33,14 @@ pub enum Memory {
 }
 
 pub trait Program {
+    /// Setup transaction
     fn connect(&self) -> Result<()>;
-    fn begin(&self) -> Result<bool>;
-    fn close(self) -> Result<()>;
+
+    /// Begin program session
+    fn begin(&self, isp_speed: u8) -> Result<bool>;
+
+    /// End program session
+    fn end(self) -> Result<()>;
 
     fn chip_erase(&self) -> Result<bool>;
     fn is_ready(&self) -> Result<bool>;
@@ -52,4 +59,17 @@ pub trait Program {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct AVR {
     pub part_name: String,
+}
+
+impl AVR {
+    fn program(&self, device: Rc<crate::ll::ATPR>, int: Interface) -> Box<dyn Program> {
+        match int {
+            Interface::ISP => Box::new(isp::ISP::from(device)),
+            _ => todo!(),
+        }
+    }
+
+    fn close(&self, _: Box<dyn Program>) {
+        todo!()
+    }
 }

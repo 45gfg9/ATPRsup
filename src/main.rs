@@ -1,3 +1,5 @@
+use std::rc::Rc;
+
 use crate::ll::ATPR;
 
 mod avr;
@@ -14,7 +16,7 @@ fn main() {
 
     println!("{:#?}", opt);
 
-    let atpr: ATPR = ll::getATPR().expect("ATPR not found");
+    let atpr: Rc<ATPR> = Rc::new(ll::getATPR().expect("ATPR not found"));
     let ver = atpr.version();
     println!("{:?}", ver);
 }
