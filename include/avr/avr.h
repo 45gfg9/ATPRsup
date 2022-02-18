@@ -71,6 +71,8 @@ namespace AVR {
 
         virtual uint8_t readLockBits() = 0;
 
+        virtual uint8_t readCalibration() = 0;
+
         virtual const uint8_t *readSignature() = 0;
     };
 

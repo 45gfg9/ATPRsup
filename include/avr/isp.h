@@ -28,6 +28,16 @@ namespace AVR {
         uint8_t ispSpeed;
         uint8_t sigBuf[3];
 
+        enum ByteField : uint32_t {
+            LOCKBITS = 0x0000'0058,
+            CALIBRATION = 0x0000'0038,
+            LFUSE = 0x0000'0050,
+            HFUSE = 0x0000'0858,
+            EFUSE = 0x0000'0850,
+        };
+
+        uint8_t uniReadByteField(ByteField field);
+
     public:
         explicit ISP(ATPR *handle, uint8_t ispSpeed = 4);
 
@@ -56,6 +66,8 @@ namespace AVR {
         uint8_t readFuse(uint8_t address) override;
 
         bool writeFuse(uint8_t address, uint8_t data) override;
+
+        uint8_t readCalibration() override;
 
         uint8_t readLockBits() override;
 

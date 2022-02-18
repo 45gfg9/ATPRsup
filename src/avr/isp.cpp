@@ -22,6 +22,14 @@ using namespace AVR;
 
 // TODO
 
+uint8_t ISP::uniReadByteField(ISP::ByteField field) {
+    uint16_t value = field & 0xffff;
+    uint16_t index = field >> 4;
+    uint8_t buf[4];
+    handle->read(0x01, value, index, buf, 4);
+    return buf[3];
+}
+
 ISP::ISP(ATPR *handle, uint8_t ispSpeed) : Program(handle) {
     assert(ispSpeed < 14);
 
@@ -42,14 +50,22 @@ bool ISP::begin() {
 }
 
 bool ISP::chipErase() {
-    return false;
+    uint8_t buf[4];
+    handle->read(0x01, 0x80ac, 0x0000, buf, 4);
+
+    while (!isReady()); // wait for completion
+
+    return true;
 }
 
 bool ISP::isReady() {
-    return false;
+    uint8_t buf[4];
+    handle->read(0x01, 0x00f0, 0x0000, buf, 4);
+    return !(buf[3] & 1);
 }
 
 bool ISP::latchData() {
+    // unimplemented
     return false;
 }
 
@@ -85,8 +101,12 @@ bool ISP::writeFuse(uint8_t address, uint8_t data) {
     return false;
 }
 
+uint8_t ISP::readCalibration() {
+    return uniReadByteField(CALIBRATION);
+}
+
 uint8_t ISP::readLockBits() {
-    return 0;
+    return uniReadByteField(LOCKBITS);
 }
 
 const uint8_t *ISP::readSignature() {

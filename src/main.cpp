@@ -39,6 +39,8 @@ int main() {
 
     printf("Target signature %02X %02X %02X\n", signature[0], signature[1], signature[2]);
 
+    isp->chipErase();
+
     std::atexit([] {
         libusb_exit(ATPRContext);
         ATPRContext = nullptr;
