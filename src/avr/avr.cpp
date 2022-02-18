@@ -15,9 +15,28 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef __ATPRSUP_LL_H__
-#define __ATPRSUP_LL_H__
+#include "avr/avr.h"
+#include "avr/isp.h"
 
-#include <libusb-1.0/libusb.h>
+using namespace AVR;
 
-#endif // __ATPRSUP_LL_H__
+Program::Program(ATPR *handle) : handle(handle) {
+}
+
+Program::~Program() {
+    uint8_t buf[4];
+    handle->read(0x00, 0x9140, 0x469c, buf, 4);
+    assert(*reinterpret_cast<uint32_t *>(buf) == 0x469c9140);
+}
+
+Device::Device(ATPR *handle) : handle(handle) {
+}
+
+std::unique_ptr<Program> Device::program(Protocol protocol) {
+    switch (protocol) {
+        case Protocol::ISP:
+            return std::make_unique<ISP>(handle);
+        default:
+            assert(false);
+    }
+}

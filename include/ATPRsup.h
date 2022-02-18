@@ -18,4 +18,6 @@
 #ifndef __ATPRSUP_H__
 #define __ATPRSUP_H__
 
+#include "avr/avr.h"
+
 #endif // __ATPRSUP_H__

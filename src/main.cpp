@@ -20,8 +20,29 @@
 
 #include <iostream>
 
+#include <libusb-1.0/libusb.h>
+
+
 int main() {
     std::cout << "Hello ATPRsup" << std::endl;
+    libusb_init(&ATPRContext);
+
+    // TODO
+    ATPR device(openDevice(ATPR_VID, ATPR_VENDOR_NAME, ATPR_PID, ATPR_PRODUCT_NAME));
+    auto ver = device.version();
+    printf("Firmware version %u.%u.%u\n", ver[0], ver[1], ver[2]);
+
+    auto avr = device.openAVR();
+    auto isp = avr->program(AVR::Protocol::ISP);
+    isp->begin();
+    auto signature = isp->readSignature();
+
+    printf("Target signature %02X %02X %02X\n", signature[0], signature[1], signature[2]);
+
+    std::atexit([] {
+        libusb_exit(ATPRContext);
+        ATPRContext = nullptr;
+    });
 
     return 0;
 }
